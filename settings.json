@@ -1,16 +1,17 @@
 {
-    "editor.tabSize": 2,
-    "editor.rulers": [
-        100,
-        120
-    ],
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "files.watcherExclude": {
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/node_modules/**": true,
-        "**/bazel-*/**": true
-    }
+  "editor.tabSize": 2,
+  "editor.rulers": [
+      100,
+      120
+  ],
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/bazel-*/**": true
+  },
+  "files.autoSave": "onFocusChange"
 }
