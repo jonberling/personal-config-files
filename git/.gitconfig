@@ -1,5 +1,4 @@
 [core]
 	editor = vim
-	pager = cat
 [pager]
 	branch = false
