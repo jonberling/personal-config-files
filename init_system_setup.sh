@@ -12,6 +12,7 @@ htop tree vim \
 wget curl \
 python python3 python3-pip \
 zsh \
+openssh-client openssh-server \
 
 # install Oh My Zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
