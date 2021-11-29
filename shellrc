@@ -1,0 +1,6 @@
+export LESS="-F -X $LESS"
+
+alias ll='ls -lh --color'
+
+ZSH_THEME="murilasso"
+
