@@ -1,4 +1,10 @@
 [core]
 	editor = vim
+	preloadIndex = true
 [pager]
 	branch = false
+[fetch]
+	recursesubmodules = true
+	prune = true
+[submodule]
+	recurse = true
