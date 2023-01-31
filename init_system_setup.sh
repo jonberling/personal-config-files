@@ -10,12 +10,6 @@ clang gcc g++ \
 git cmake \
 htop tree vim \
 wget curl \
-python python3 python3-pip \
+python3 python3-pip python-is-python3 \
 zsh \
 openssh-client openssh-server \
-
-# install Oh My Zsh
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-
-# install openconnect
-# sudo apt-get install network-manager-openconnect network-manager-openconnect-gnome
