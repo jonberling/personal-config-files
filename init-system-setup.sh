@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 
+# Script to set up a new Ubuntu system with common packages and configurations
+
+# Function to prompt user to continue
 prompt_to_continue() {
     read -n 1 -s -r -p "Press any key to continue..."
 }
 
+# Save the inotify configuration in a variable
+inotify_conf="
+# Increase max user watches for file watchers (e.g. in VS Code)
+fs.inotify.max_user_watches=524288
+"
+
+# update and upgrade system
 sudo apt update -y
 sudo apt upgrade -y
-
 
 # install common packages
 sudo apt install -y \
@@ -18,23 +27,31 @@ sudo apt install -y \
     zsh \
     openssh-client openssh-server \
     nfs-common \
-
-# Use apt-get to install all packages in the array.
-# The -y flag automatically answers yes to prompts.
-echo "Starting installation of packages..."
-sudo apt-get update
-sudo apt-get install -y "${packages[@]}"
+    network-manager-openconnect-gnome \
 
 echo "
 Installation of common packages complete.
 "
 
-echo "
-Installing Microsoft fonts. Accept the EULA when prompted.
+echo "Adding inotify configuration to /etc/sysctl.conf
+"
+
+# increase max user watches for file watchers (e.g. in VS Code)
+if ! grep -q "fs.inotify.max_user_watches" /etc/sysctl.conf; then
+    echo "$inotify_conf" | sudo tee -a /etc/sysctl.conf > /dev/null
+    sudo sysctl -p
+fi
+
+echo "Installing Microsoft fonts. Accept the EULA when prompted.
 "
 
 prompt_to_continue
 sudo apt install ttf-mscorefonts-installer
+
+echo "
+Installing uv
+"
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 echo "
 Installation complete.
