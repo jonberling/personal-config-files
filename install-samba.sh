@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Initial Samba installation and setup script for Ubuntu/Debian systems
 
 # update and upgrade system
 sudo apt update -y

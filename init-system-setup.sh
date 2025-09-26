@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-
-prompt_to_continue() {
-    read -n 1 -s -r -p "Press any key to continue..."
-}
+# Initial system setup script for Ubuntu/Debian systems
 
 sudo apt update -y
 sudo apt upgrade -y
-
 
 # install common packages
 sudo apt install -y \
@@ -26,21 +22,12 @@ sudo apt-get update
 sudo apt-get install -y "${packages[@]}"
 
 echo "
-Installation of common packages complete.
-"
-
-echo "
 Installing Microsoft fonts. Accept the EULA when prompted.
 "
-
-prompt_to_continue
 sudo apt install ttf-mscorefonts-installer
 
-echo "
-Installation complete.
-"
-
 cat << EOF
+
 Links to download other software:
 
     Oh My Zsh
