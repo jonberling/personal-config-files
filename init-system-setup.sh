@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
 # Initial system setup script for Ubuntu/Debian systems
 
+# Update and upgrade existing packages
 sudo apt update -y
 sudo apt upgrade -y
 
+echo "Starting installation of packages..."
 # install common packages
 sudo apt install -y \
     clang gcc g++ cmake \
     git \
     btop htop tree vim \
-    wget curl \
+    wget curl rsync \
     python3 python3-pip python-is-python3 \
     zsh \
     openssh-client openssh-server \
     nfs-common \
-
-# Use apt-get to install all packages in the array.
-# The -y flag automatically answers yes to prompts.
-echo "Starting installation of packages..."
-sudo apt-get update
-sudo apt-get install -y "${packages[@]}"
+    snapd \
 
 echo "
 Installing Microsoft fonts. Accept the EULA when prompted.
