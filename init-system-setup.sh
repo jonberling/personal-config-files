@@ -10,9 +10,9 @@ echo "Starting installation of packages..."
 sudo apt install -y \
     clang gcc g++ cmake \
     git \
-    btop htop tree vim \
+    btop htop tree vim bat \
     wget curl rsync \
-    python3 python3-pip python-is-python3 \
+    python3 python3-pip python-is-python3 pipx \
     zsh \
     openssh-client openssh-server \
     nfs-common \

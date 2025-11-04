@@ -3,6 +3,7 @@ if [[ ! "$LESS" =~ "-R -F -X" ]]; then
 fi
 
 alias ll='ls -lh --color'
+alias batcat='bat'
 
 ZSH_THEME="murilasso"
 
