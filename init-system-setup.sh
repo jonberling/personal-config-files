@@ -18,6 +18,15 @@ sudo apt install -y \
     nfs-common \
     snapd \
 
+# Configure git defaults
+read -p "Enter your full name: " user_name
+read -p "Enter your email address: " user_email
+
+git config --global user.name "$user_name"
+git config --global user.email "$user_email"
+git config --global init.defaultBranch main
+git config --global editor vim
+
 echo "
 Installing Microsoft fonts. Accept the EULA when prompted.
 "
