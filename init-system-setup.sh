@@ -18,6 +18,9 @@ sudo apt install -y \
     nfs-common \
     snapd \
 
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Configure git defaults
 read -p "Enter your full name: " user_name
 read -p "Enter your email address: " user_email
