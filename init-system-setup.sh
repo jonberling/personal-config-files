@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Initial system setup script for Ubuntu/Debian systems
 
+# Add go-lang PPA
+echo "Adding PPA repositories."
+sudo add-apt-repository --yes ppa:longsleep/golang-backports
+
 # Update and upgrade existing packages
 sudo apt update -y
 sudo apt upgrade -y
@@ -17,6 +21,7 @@ sudo apt install -y \
     openssh-client openssh-server \
     nfs-common \
     snapd \
+    golang-go \
 
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
