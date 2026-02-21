@@ -22,6 +22,7 @@ sudo apt install -y \
     nfs-common \
     snapd \
     golang-go \
+    nvidia-cuda-toolkit \
 
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh

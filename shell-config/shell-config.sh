@@ -2,6 +2,8 @@ if [[ ! "$LESS" =~ "-R -F -X" ]]; then
   export LESS="-R -F -X $LESS"
 fi
 
+COLORTERM=truecolor
+
 alias ll='ls -lh --color'
 alias batcat='bat'
 
