@@ -37,15 +37,6 @@ if ! grep -q "$SOURCE_LINE" ~/.bashrc; then
     echo -e "\n$SOURCE_LINE" >> ~/.bashrc
 fi
 
-if ! grep -q "$SOURCE_LINE" ~/.zshrc; then
-    echo "Adding source line to ~/.zshrc"
-    echo -e "\n$SOURCE_LINE" >> ~/.zshrc
-    echo 'If you are using oh-my-zsh, please move the line to before "source $ZSH/oh-my-zsh.sh"'
-fi
-
-# Ensure ~/.local/bin exists
-mkdir -p ~/.local/bin
-
 # Final message
 cat << EOF
 Shell configuration installation complete.

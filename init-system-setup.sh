@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Initial system setup script for Ubuntu/Debian systems
 
+export DEBIAN_FRONTEND=noninteractive
 set -e  # Exit immediately if a command exits with a non-zero status
 
 # Add go-lang PPA
@@ -105,6 +106,15 @@ echo "Installing starship prompt..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
 eval "$(starship init bash)"
 
+# Pre-accept the Microsoft fonts EULA
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
+# check if ttf-mscorefonts-installer is installed, if not install it
+if ! dpkg -l | grep ttf-mscorefonts-installer >/dev/null; then
+    echo -e "\nInstalling Microsoft fonts...\n"
+    sudo apt install -y ttf-mscorefonts-installer
+fi
+
 # Configure git defaults
 if ! git config --global user.name >/dev/null; then
     read -p "Enter your full name: " REPLY
@@ -124,11 +134,8 @@ if ! git config --global core.editor >/dev/null; then
     git config --global core.editor vim
 fi
 
-# check if ttf-mscorefonts-installer is installed, if not install it
-if ! dpkg -l | grep ttf-mscorefonts-installer >/dev/null; then
-    echo -e "\nInstalling Microsoft fonts. Accept the EULA when prompted.\n"
-    sudo apt install ttf-mscorefonts-installer
-fi
+# Ensure ~/.local/bin exists
+mkdir -p ~/.local/bin
 
 cat << EOF
 
