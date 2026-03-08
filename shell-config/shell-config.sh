@@ -5,9 +5,9 @@ fi
 COLORTERM=truecolor
 
 alias ll='ls -lh --color'
-alias batcat='bat'
 
-ZSH_THEME="murilasso"
+# Enable starship prompt
+eval "$(starship init bash)"
 
 # Add ~/.local/bin to PATH if it is not already included
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then

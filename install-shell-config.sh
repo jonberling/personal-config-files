@@ -8,14 +8,15 @@ cp shell-config/gitignore ~/.config/shell/.gitignore
 touch ~/.config/shell/api-keys.sh
 chmod 600 ~/.config/shell/api-keys.sh  # Only current user can access the api-keys.sh file
 
-# Move existing rc files to shell config so changes can be tracked
+# Move existing bashrc file to shell config so changes can be tracked
 if [[ -f ~/.bashrc && ! -L ~/.bashrc ]]; then
     mv ~/.bashrc ~/.config/shell/bashrc
     ln -s ~/.config/shell/bashrc ~/.bashrc
 fi
-if [[ -f ~/.zshrc && ! -L ~/.zshrc ]]; then
-    mv ~/.zshrc ~/.config/shell/zshrc
-    ln -s ~/.config/shell/zshrc ~/.zshrc
+
+# Create a symlink to the api-keys.sh file
+if [[ ! -L ~/.api-keys.sh ]]; then
+    ln -s ~/.config/shell/api-keys.sh ~/.api-keys.sh
 fi
 
 # Make shell config directory a git repo
