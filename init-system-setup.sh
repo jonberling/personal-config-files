@@ -135,6 +135,10 @@ if ! git config --global core.editor >/dev/null; then
     git config --global core.editor vim
 fi
 
+if ! git config --global pull.rebase >/dev/null; then
+    git config --global pull.rebase true
+fi
+
 # Ensure ~/.local/bin exists
 mkdir -p ~/.local/bin
 
