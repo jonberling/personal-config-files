@@ -102,6 +102,11 @@ PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-system-font false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ font 'Hack Nerd Font 12'
 
+# Enable thumbnails on network shares
+gsettings set org.gnome.desktop.thumbnailers disable-all false
+gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
+nautilus -q
+
 # Install starship
 echo "Installing starship prompt..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
