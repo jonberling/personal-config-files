@@ -6,6 +6,11 @@ COLORTERM=truecolor
 
 alias ll='ls -lh --color'
 
+# Add commands that cannot be alias's
+edit() {
+    gedit "$@" >/dev/null 2>&1 &
+}
+
 # Enable starship prompt
 eval "$(starship init bash)"
 
