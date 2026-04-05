@@ -53,18 +53,24 @@ gsettings set org.gnome.desktop.thumbnailers disable-all false
 gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
 nautilus -q
 
-# Pre-accept the Microsoft fonts EULA
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-
 # check if ttf-mscorefonts-installer is installed, if not install it
 if ! dpkg -l | grep ttf-mscorefonts-installer >/dev/null; then
     echo -e "\nInstalling Microsoft fonts...\n"
+
+    # Pre-accept the Microsoft fonts EULA
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
+    # Install microsoft fonts
     sudo apt install -y ttf-mscorefonts-installer
 fi
 
-# Ensure ~/.local/bin exists
-mkdir -p ~/.local/bin
+# Ensure key home directories exist
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.config
+mkdir -p $HOME/.local/share
+mkdir -p $HOME/.cache
 
+# Final message
 echo -e "\nSystem setup complete.\n"
 
 mdcat download-software.md
