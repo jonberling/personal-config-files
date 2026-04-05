@@ -43,50 +43,6 @@ fi
 tmp_dir=$(mktemp -d)
 pushd "$tmp_dir" > /dev/null
 
-# Install popular nerd fonts
-if ! fc-list | grep "Hack Nerd" >/dev/null; then
-    echo "Installing Hack Nerd Font..."
-    curl --location --silent https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip -o Hack.zip
-else
-    echo "Hack Nerd Font is already installed, skipping."
-fi
-
-if ! fc-list | grep "JetBrainsMono" >/dev/null; then
-    echo "Installing JetBrainsMono..."
-    curl --location --silent https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip -o JetBrainsMono.zip
-else
-    echo "JetBrainsMono is already installed, skipping."
-fi
-
-if ! fc-list | grep "FiraCode" >/dev/null; then
-    echo "Installing FiraCode..."
-    curl --location --silent https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip -o FiraCode.zip
-else
-    echo "FiraCode is already installed, skipping."
-fi
-
-if ! fc-list | grep "Meslo" >/dev/null; then
-    echo "Installing Meslo..."
-    curl --location --silent https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip -o Meslo.zip
-else
-    echo "Meslo is already installed, skipping."
-fi
-
-if ! fc-list | grep "CascadiaCode" >/dev/null; then
-    echo "Installing CascadiaCode..."
-    curl --location --silent https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip -o CascadiaCode.zip
-else
-    echo "CascadiaCode is already installed, skipping."
-fi
-
-for zip in *.zip; do
-    unzip -q "$zip" -d "${zip%.zip}"
-    sudo cp "${zip%.zip}"/*.ttf /usr/local/share/fonts/ 2>/dev/null || true
-done
-rm *.zip
-
-sudo fc-cache -f  # Update font cache
-
 # Install mdcat
 curl --location --silent https://github.com/swsnr/mdcat/releases/download/mdcat-2.7.1/mdcat-2.7.1-x86_64-unknown-linux-gnu.tar.gz -o mdcat-2.7.1-x86_64-unknown-linux-gnu.tar.gz
 tar -xf mdcat-2.7.1-x86_64-unknown-linux-gnu.tar.gz
@@ -97,20 +53,10 @@ sudo cp mdcat-2.7.1-x86_64-unknown-linux-gnu/mdcat /usr/local/bin/mdcat
 popd > /dev/null
 rm -r "$tmp_dir"
 
-# Set up the default font
-PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-system-font false
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ font 'Hack Nerd Font 12'
-
 # Enable thumbnails on network shares
 gsettings set org.gnome.desktop.thumbnailers disable-all false
 gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
 nautilus -q
-
-# Install starship
-echo "Installing starship prompt..."
-curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
-eval "$(starship init bash)"
 
 # Pre-accept the Microsoft fonts EULA
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
@@ -144,6 +90,7 @@ EOF
 cat << EOF
 System setup complete.
 
+Run ./setup-starship.sh to install nerd fonts and the starship prompt.
 Run ./setup-git.sh to configure git globals (name, email, defaults).
 Run ./install-shell-config.sh to set up shell configuration files and apply changes.
 EOF

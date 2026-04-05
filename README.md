@@ -6,7 +6,11 @@ This repository contains scripts and configuration files to help set up a new Li
 
 ### `init-system-setup.sh`
 
-Automates the initial setup of a new Linux system by installing common packages. It also provides links to download additional software (Chrome, VS Code, etc)
+Automates the initial setup of a new Linux system by installing common packages. It also provides links to download additional software (Chrome, VS Code, etc).
+
+### `setup-starship.sh`
+
+Installs nerd fonts (Hack, JetBrainsMono, FiraCode, Meslo, CascadiaCode), configures the default GNOME Terminal font to "Hack Nerd Font 12", and installs the [starship](https://starship.rs) prompt.
 
 ### `setup-git.sh`
 
