@@ -121,29 +121,6 @@ if ! dpkg -l | grep ttf-mscorefonts-installer >/dev/null; then
     sudo apt install -y ttf-mscorefonts-installer
 fi
 
-# Configure git defaults
-if ! git config --global user.name >/dev/null; then
-    read -p "Enter your full name: " REPLY
-    git config --global user.name "$REPLY"
-fi
-
-if ! git config --global user.email >/dev/null; then
-    read -p "Enter your email address: " REPLY
-    git config --global user.email "$REPLY"
-fi
-
-if ! git config --global init.defaultBranch >/dev/null; then
-    git config --global init.defaultBranch main
-fi
-
-if ! git config --global core.editor >/dev/null; then
-    git config --global core.editor vim
-fi
-
-if ! git config --global pull.rebase >/dev/null; then
-    git config --global pull.rebase true
-fi
-
 # Ensure ~/.local/bin exists
 mkdir -p ~/.local/bin
 
@@ -167,5 +144,6 @@ EOF
 cat << EOF
 System setup complete.
 
-run ./install-shell-config.sh to set up shell configuration files and apply changes.
+Run ./setup-git.sh to configure git globals (name, email, defaults).
+Run ./install-shell-config.sh to set up shell configuration files and apply changes.
 EOF

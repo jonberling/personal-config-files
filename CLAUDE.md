@@ -9,7 +9,7 @@ This repository contains shell scripts and configuration files for setting up a 
 ## Key Scripts
 
 - **`init-system-setup.sh`** — Run once on a fresh system. Installs apt packages, Rust, uv, nerd fonts, mdcat, and starship. Targets Ubuntu/Debian only.
-- **`config-git.sh`** — Run interactively after `init-system-setup.sh`. Configures git globals: `user.name`, `user.email`, `init.defaultBranch`, `core.editor`, `pull.rebase`.
+- **`setup-git.sh`** — Run interactively after `init-system-setup.sh`. Configures git globals: `user.name`, `user.email`, `init.defaultBranch`, `core.editor`, `pull.rebase`.
 - **`install-shell-config.sh`** — Copies `shell-config/` files to `~/.config/shell/`, symlinks `~/.bashrc` to `~/.config/shell/bashrc`, and initializes `~/.config/shell` as a local git repo for tracking personal shell changes.
 
 ## Architecture
