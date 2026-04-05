@@ -11,14 +11,18 @@ This repository contains shell scripts and configuration files for setting up a 
 - **`init-system-setup.sh`** — Run once on a fresh system. Installs apt packages, Rust, uv, and mdcat. Targets Ubuntu/Debian only.
 - **`setup-starship.sh`** — Run after `init-system-setup.sh`. Installs nerd fonts, configures the default GNOME Terminal font, and installs the starship prompt.
 - **`setup-git.sh`** — Run interactively after `init-system-setup.sh`. Configures git globals: `user.name`, `user.email`, `init.defaultBranch`, `core.editor`, `pull.rebase`.
+- **`setup-npm.sh`** — Installs NVM and the latest stable Node.js/npm via NVM.
 - **`install-shell-config.sh`** — Copies `shell-config/` files to `~/.config/shell/`, symlinks `~/.bashrc` to `~/.config/shell/bashrc`, and initializes `~/.config/shell` as a local git repo for tracking personal shell changes.
 
 ## Architecture
 
-The setup is two-phase:
+Scripts are run in order after a fresh install:
 
 1. `init-system-setup.sh` — system-level packages and tools (requires sudo)
-2. `install-shell-config.sh` — user-level shell config (no sudo needed)
+2. `setup-starship.sh` — nerd fonts and starship prompt
+3. `setup-git.sh` — git globals (interactive)
+4. `setup-npm.sh` — NVM and Node.js (optional)
+5. `install-shell-config.sh` — user-level shell config (no sudo needed)
 
 ### `shell-config/` directory
 
