@@ -70,27 +70,8 @@ fi
 # Ensure ~/.local/bin exists
 mkdir -p ~/.local/bin
 
-cat << EOF
+echo -e "\nSystem setup complete.\n"
 
-Links to download other software:
+mdcat download-software.md
 
-    Chrome
-    https://www.google.com/chrome/?platform=linux
-
-    VS Code
-    https://code.visualstudio.com/download
-
-    Docker
-    https://docs.docker.com/engine/install/ubuntu/
-
-    Nvidia Docker
-    https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#with-apt-ubuntu-debian
-EOF
-
-cat << EOF
-System setup complete.
-
-Run ./setup-starship.sh to install nerd fonts and the starship prompt.
-Run ./setup-git.sh to configure git globals (name, email, defaults).
-Run ./install-shell-config.sh to set up shell configuration files and apply changes.
-EOF
+echo -e "\nSee README.md for post-setup instructions.\n"
