@@ -26,4 +26,9 @@ if [[ -n "$BASH_VERSION" ]]; then
     bind '"\e[B": history-search-forward'
 fi
 
+# Set XDG base directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 source ~/.config/shell/api-keys.sh
