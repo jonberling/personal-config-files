@@ -29,3 +29,7 @@ https://claude.com/download
 ## Codex CLI
 
 https://developers.openai.com/codex/cli
+
+## Slack
+
+https://slack.com/downloads/instructions/linux?ddl=1&build=deb
