@@ -46,3 +46,8 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 echo "Installing starship prompt..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
 eval "$(starship init bash)"
+
+echo
+echo "Optionally copy config-files/starship.toml to ~/.config/starship.toml."
+echo
+echo "Starship installation complete."

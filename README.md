@@ -24,12 +24,6 @@ Installs NVM and the latest stable version of Node.js/npm via NVM.
 
 Configures gaming defaults, including the `ntsync` kernel module for improved Wine/Proton performance.
 
-### `install-shell-config.sh`
-
-Sets up your shell configuration. Creates `~/.config/shell` for storing shell configuration options. Add custom shell configuration data to `~/.config/shell/shell-config.sh`. It also creates a local git repo so shell configuration changes can be tracked over time.
-
-API keys can be placed in `~/.config/shell/api-keys.sh`. These will not be tracked by git.
-
 ## License
 
 See `LICENSE` for details.
