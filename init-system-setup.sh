@@ -13,6 +13,7 @@ echo "Starting installation of packages..."
 sudo apt install -y \
     clang gcc g++ cmake \
     git \
+    ripgrep \
     btop htop tree vim \
     wget curl rsync \
     python3 python3-pip python-is-python3 pipx \
@@ -21,6 +22,13 @@ sudo apt install -y \
     snapd \
     nvidia-cuda-toolkit \
     gedit \
+
+# Install fastfetch if available, otherwise fall back to neofetch
+if apt-cache show fastfetch >/dev/null 2>&1; then
+    sudo apt install -y fastfetch
+else
+    sudo apt install -y neofetch
+fi
 
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
