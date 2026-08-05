@@ -22,6 +22,7 @@ sudo apt install -y \
     snapd \
     nvidia-cuda-toolkit \
     gedit \
+    fd-find ripgrep \
 
 # Install fastfetch if available, otherwise fall back to neofetch
 if apt-cache show fastfetch >/dev/null 2>&1; then
