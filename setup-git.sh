@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Configure git global defaults
 
+if ! command -v git >/dev/null; then
+    echo "Installing git..."
+    sudo apt install -y git
+fi
+
 if ! git config --global user.name >/dev/null; then
     read -p "Enter your full name: " REPLY
     git config --global user.name "$REPLY"
