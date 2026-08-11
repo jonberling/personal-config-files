@@ -36,4 +36,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Show a system summary on interactive shell startup, if available
+if [[ $- == *i* ]]; then
+    if command -v fastfetch >/dev/null 2>&1; then
+        fastfetch
+    elif command -v neofetch >/dev/null 2>&1; then
+        neofetch
+    fi
+fi
+
 # End settings from setup-bash.sh in "personal-config-files" repository

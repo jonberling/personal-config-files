@@ -24,7 +24,6 @@ install_nerd_font Hack           "Hack Nerd"
 install_nerd_font JetBrainsMono  "JetBrainsMono"
 install_nerd_font FiraCode       "FiraCode"
 install_nerd_font Meslo          "Meslo"
-install_nerd_font CascadiaCode   "CascadiaCode"
 
 for zip in *.zip; do
     unzip -q "$zip" -d "${zip%.zip}"
@@ -45,9 +44,24 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 # Install starship
 echo "Installing starship prompt..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
+
+# Add starship init to ~/.bashrc so it takes effect on login
+bashrc="$HOME/.bashrc"
+init_line='eval "$(starship init bash)"'
+
+touch "$bashrc"
+
+if ! grep -qF "$init_line" "$bashrc"; then
+    # Ensure the file ends with a newline before adding the blank line
+    [[ -s "$bashrc" && $(tail -c1 "$bashrc") != "" ]] && printf '\n' >> "$bashrc"
+    printf '\n%s\n' "$init_line" >> "$bashrc"
+fi
+
 eval "$(starship init bash)"
 
 echo
 echo "Optionally copy config-files/starship.toml to ~/.config/starship.toml."
+echo "  cp config-files/starship.toml ~/.config/starship.toml"
+echo "  source ~/.bashrc"
 echo
 echo "Starship installation complete."

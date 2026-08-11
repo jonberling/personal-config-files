@@ -25,3 +25,13 @@ perl -0777 -i -pe 's/\n+\z/\n/' "$bashrc"
 
 # Append the content with exactly one blank line before and after
 printf '\n%s\n\n' "$content" >> "$bashrc"
+
+# Collapse any repeated blank lines in the file down to a single blank line
+perl -0777 -i -pe 's/\n{3,}/\n\n/g' "$bashrc"
+
+# Remove any blank line(s) at the very end of the file, leaving a single trailing newline
+perl -0777 -i -pe 's/\n+\z/\n/' "$bashrc"
+
+echo
+echo "Run the following to apply the changes to your current shell:"
+echo "  source ~/.bashrc"

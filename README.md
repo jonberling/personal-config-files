@@ -14,7 +14,7 @@ Installs the contents of `config-files/bashrc.sh` into `~/.bashrc`, replacing an
 
 ### `setup-starship.sh`
 
-Installs nerd fonts (Hack, JetBrainsMono, FiraCode, Meslo, CascadiaCode), configures the default GNOME Terminal font to "Hack Nerd Font 12", and installs the [starship](https://starship.rs) prompt.
+Installs nerd fonts (Hack, JetBrainsMono, FiraCode, Meslo), configures the default GNOME Terminal font to "Hack Nerd Font 12", and installs the [starship](https://starship.rs) prompt.
 
 ### `setup-git.sh`
 
