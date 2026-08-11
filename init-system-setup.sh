@@ -20,9 +20,14 @@ sudo apt install -y \
     openssh-client openssh-server \
     nfs-common \
     snapd \
+    software-properties-common \
     nvidia-cuda-toolkit \
     gedit \
     fd-find ripgrep \
+
+# fastfetch isn't in the default Ubuntu repos, so add its PPA before checking for it
+sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+sudo apt update -y
 
 # Install fastfetch if available, otherwise fall back to neofetch
 if apt-cache show fastfetch >/dev/null 2>&1; then

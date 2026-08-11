@@ -3,6 +3,9 @@
 
 set -e
 
+# Make non-matching globs (e.g. *.zip) expand to nothing instead of the literal pattern
+shopt -s nullglob
+
 tmp_dir=$(mktemp -d)
 pushd "$tmp_dir" > /dev/null
 
@@ -28,8 +31,8 @@ install_nerd_font Meslo          "Meslo"
 for zip in *.zip; do
     unzip -q "$zip" -d "${zip%.zip}"
     sudo cp "${zip%.zip}"/*.ttf /usr/local/share/fonts/ 2>/dev/null || true
+    rm "$zip"
 done
-rm *.zip
 
 sudo fc-cache -f  # Update font cache
 

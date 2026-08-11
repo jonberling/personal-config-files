@@ -27,3 +27,7 @@ fi
 if ! git config --global pull.rebase >/dev/null; then
     git config --global pull.rebase true
 fi
+
+if ! git config --global core.excludesfile >/dev/null; then
+    git config --global core.excludesfile "$HOME/.gitignore"
+fi
