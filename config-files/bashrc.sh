@@ -14,6 +14,11 @@ if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
     alias fd='fdfind'
 fi
 
+# Add an alias for bat if it is installed as batcat
+if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
+    alias bat='batcat'
+fi
+
 # Add commands that cannot be alias's
 edit() {
     gedit "$@" >/dev/null 2>&1 &

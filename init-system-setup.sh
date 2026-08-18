@@ -20,6 +20,7 @@ sudo apt install -y \
     openssh-client openssh-server \
     nfs-common \
     snapd \
+    bat \
     software-properties-common \
     nvidia-cuda-toolkit \
     gedit \
