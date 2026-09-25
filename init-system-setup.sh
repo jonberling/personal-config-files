@@ -26,6 +26,10 @@ sudo apt install -y \
     gedit \
     fd-find ripgrep \
 
+# Have apt's daily job pre-download upgradeable packages so upgrades are faster.
+# Uses its own file so it overrides 10periodic without editing a package-owned conffile.
+echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee /etc/apt/apt.conf.d/99download-upgradeable >/dev/null
+
 # fastfetch isn't in the default Ubuntu repos, so add its PPA before checking for it
 sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 sudo apt update -y
