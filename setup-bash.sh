@@ -3,34 +3,22 @@ set -euo pipefail
 
 pushd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null
 
-content_file="config-files/bashrc.sh"
-bashrc="$HOME/.bashrc"
+# Install the bash config into ~/.config/bash
+config_dir="$HOME/.config/bash"
+mkdir -p "$config_dir"
+cp config-files/bashrc "$config_dir/bashrc"
 
-begin_marker='# Begin settings from setup-bash.sh in "personal-config-files" repository'
-end_marker='# End settings from setup-bash.sh in "personal-config-files" repository'
+# Add a line to ~/.bashrc that sources the config, if it isn't already there
+bashrc="$HOME/.bashrc"
+source_line='if [ -f "$HOME/.config/bash/bashrc" ]; then source "$HOME/.config/bash/bashrc"; fi'
 
 touch "$bashrc"
 
-content="$(cat "$content_file")"
-
-# Remove any existing block (marker through marker), along with surrounding blank lines
-BEGIN_MARKER="$begin_marker" END_MARKER="$end_marker" perl -0777 -i -pe '
-    my $b = quotemeta($ENV{BEGIN_MARKER});
-    my $e = quotemeta($ENV{END_MARKER});
-    s/\n*$b.*?$e\n*/\n\n/gs;
-' "$bashrc"
-
-# Collapse trailing blank lines left behind by the removal
-perl -0777 -i -pe 's/\n+\z/\n/' "$bashrc"
-
-# Append the content with exactly one blank line before and after
-printf '\n%s\n\n' "$content" >> "$bashrc"
-
-# Collapse any repeated blank lines in the file down to a single blank line
-perl -0777 -i -pe 's/\n{3,}/\n\n/g' "$bashrc"
-
-# Remove any blank line(s) at the very end of the file, leaving a single trailing newline
-perl -0777 -i -pe 's/\n+\z/\n/' "$bashrc"
+if ! grep -qF "$source_line" "$bashrc"; then
+    # Ensure the file ends with a newline before adding the blank line
+    [[ -s "$bashrc" && $(tail -c1 "$bashrc") != "" ]] && printf '\n' >> "$bashrc"
+    printf '\n%s\n' "$source_line" >> "$bashrc"
+fi
 
 echo
 echo "Run the following to apply the changes to your current shell:"

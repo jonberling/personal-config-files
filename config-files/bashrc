@@ -1,5 +1,3 @@
-# Begin settings from setup-bash.sh in "personal-config-files" repository
-
 # Set up less to support color and other options
 export LESS="-R -F -X $LESS"
 
@@ -49,5 +47,3 @@ if [[ $- == *i* ]]; then
         neofetch
     fi
 fi
-
-# End settings from setup-bash.sh in "personal-config-files" repository

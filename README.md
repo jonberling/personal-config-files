@@ -10,7 +10,7 @@ Automates the initial setup of a new Linux system by installing common packages,
 
 ### `setup-bash.sh`
 
-Installs the contents of `config-files/bashrc.sh` into `~/.bashrc`, replacing any previously installed block so the script is safe to re-run.
+Copies `config-files/bashrc` to `~/.config/bash/bashrc` and adds a line to `~/.bashrc` that sources it, if that line isn't already there. Safe to re-run; re-run it after editing `config-files/bashrc` to install the changes.
 
 ### `setup-starship.sh`
 
