@@ -28,6 +28,10 @@ Installs NVM and the latest stable version of Node.js/npm via NVM.
 
 Configures gaming defaults, including the `ntsync` kernel module for improved Wine/Proton performance.
 
+### `setup-search-domain.sh`
+
+Sets the IPv4 DNS search domain on a NetworkManager connection so short hostnames resolve on the local network (e.g. with `home.arpa`, `nas` resolves as `nas.home.arpa`). Run interactively: it lists the available connections, then prompts for a connection name (e.g. "Wired connection 1") and a search domain. Replaces any existing search domains on that connection and restarts it; skips both if the domain is already set.
+
 ## `download-software.md`
 
 Links to software not available via apt (Chrome, VS Code, Docker, Nvidia Docker, Gemini-CLI, Claude, Codex CLI, Slack). Displayed at the end of `init-system-setup.sh`.
