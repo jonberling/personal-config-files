@@ -1,14 +1,10 @@
 #!/bin/bash
 
-# 1. Define the latest NVM installer version
-NVM_VERSION="v0.40.4"
-
-echo "Step 1: Downloading and installing NVM ($NVM_VERSION)..."
-curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" | bash
+echo "Step 1: Downloading and installing NVM..."
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh" | bash
 
 # 2. Load NVM into the current shell session script
 # This allows the script to use the 'nvm' command immediately without restarting the terminal
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
