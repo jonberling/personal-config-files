@@ -21,4 +21,15 @@ else
     echo "ntsync persistence already configured."
 fi
 
+echo "Disabling USB auto-suspend to prevent controller disconnects..."
+
+# 1. Disable it for current devices
+for control in /sys/bus/usb/devices/*/power/control; do
+    echo on | sudo tee "$control" > /dev/null
+done
+
+# 2. Disable it for devices added later and on boot
+echo 'ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="on"' \
+    | sudo tee /etc/udev/rules.d/50-usb-no-autosuspend.rules > /dev/null
+
 echo "Gaming configuration complete."
