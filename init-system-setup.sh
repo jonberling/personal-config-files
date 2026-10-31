@@ -19,6 +19,7 @@ sudo apt install -y \
     python3 python3-pip python-is-python3 pipx \
     openssh-client openssh-server \
     nfs-common \
+    util-linux-extra \
     snapd \
     bat \
     software-properties-common \
