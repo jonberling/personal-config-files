@@ -39,10 +39,26 @@ sudo fc-cache -f  # Update font cache
 popd > /dev/null
 rm -r "$tmp_dir"
 
-# Set up the default terminal font
-PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-system-font false
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ font 'Hack Nerd Font 12'
+# Set up the default terminal font (GNOME Terminal on <= 25.04, Ptyxis on >= 25.10)
+FONT='Hack Nerd Font'
+
+has_schema() {
+    gsettings list-schemas 2>/dev/null | grep -qx "$1"
+}
+
+if has_schema org.gnome.Ptyxis; then
+    echo "Configuring Ptyxis font..."
+    gsettings set org.gnome.Ptyxis use-system-font false
+    gsettings set org.gnome.Ptyxis font-name "$FONT 11"
+fi
+
+if has_schema org.gnome.Terminal.ProfilesList; then
+    echo "Configuring GNOME Terminal font..."
+    PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
+    PROFILE_PATH="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/"
+    gsettings set "$PROFILE_PATH" use-system-font false
+    gsettings set "$PROFILE_PATH" font "$FONT 12"
+fi
 
 # Install starship
 echo "Installing starship prompt..."
